@@ -14,8 +14,17 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
 .logo{font-weight:700;color:var(--accent);text-decoration:none}
 .site-header{background:var(--card);border-bottom:1px solid rgba(0,0,0,0.06)}
 .nav{display:flex;gap:1rem}
-.nav a{color:var(--muted);text-decoration:none;padding:.5rem .25rem}
-.nav a:hover{color:var(--accent)}
+.nav a{
+    color: var(--text);
+    text-decoration: none;
+    padding: .5rem .25rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+.nav a:hover{
+    color: var(--accent);
+    opacity: 1;
+}
 .nav-toggle{display:none;background:none;border:0;font-size:1.25rem}
 
 .hero{padding:4rem 0;background:linear-gradient(180deg,#fff 0%, #f8fafc 100%)}
@@ -55,8 +64,8 @@ input[type=text],input[type=email],textarea{width:100%;padding:.6rem;border:1px 
 		--bg:#0b1220;
 		--card:#0f1724;
 		--accent:#60a5fa;
-		--muted:#9ca3af;
-		--text:#e6eef8;
+		--muted:#a3b0c7;
+		--text:#ffffff;
 	}
 }
 
@@ -65,8 +74,8 @@ body.dark{
 	--bg:#0b1220;
 	--card:#0f1724;
 	--accent:#60a5fa;
-	--muted:#9ca3af;
-	--text:#e6eef8;
+	--muted:#a3b0c7;
+	--text:#ffffff;
 }
 
 /* Ensure common components use theme variables (override remaining hard-coded colors) */
