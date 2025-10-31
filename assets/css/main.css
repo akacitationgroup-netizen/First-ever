@@ -1,16 +1,18 @@
 :root{
-  --bg:#f7f8fb;
-  --card:#ffffff;
-  --accent:#4f46e5;
-  --muted:#6b7280;
-  --max-width:1100px;
+	--bg:#f7f8fb;
+	--card:#ffffff;
+	/* Azure accent */
+	--accent:#0078D4;
+	--muted:#6b7280;
+	--text:#0b1220;
+	--max-width:1100px;
 }
 *{box-sizing:border-box}
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;line-height:1.5;margin:0;background:var(--bg);color:#111}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;line-height:1.5;margin:0;background:var(--bg);color:var(--text);transition:background-color .25s ease,color .25s ease}
 .container{max-width:var(--max-width);margin:0 auto;padding:1rem}
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .logo{font-weight:700;color:var(--accent);text-decoration:none}
-.site-header{background:#fff;border-bottom:1px solid #e6e9ef}
+.site-header{background:var(--card);border-bottom:1px solid rgba(0,0,0,0.06)}
 .nav{display:flex;gap:1rem}
 .nav a{color:var(--muted);text-decoration:none;padding:.5rem .25rem}
 .nav a:hover{color:var(--accent)}
@@ -34,7 +36,85 @@ label{display:block;font-size:.9rem;margin-bottom:.25rem;color:var(--muted)}
 input[type=text],input[type=email],textarea{width:100%;padding:.6rem;border:1px solid #e6e9ef;border-radius:6px}
 .form-status{margin-left:1rem;color:var(--muted)}
 
-.site-footer{padding:1rem 0;background:#fff;border-top:1px solid #e6e9ef}
+.site-footer{padding:1rem 0;background:var(--card);border-top:1px solid rgba(0,0,0,0.06)}
+
+/* Theme toggle button */
+.theme-toggle{background:transparent;border:0;padding:.35rem .5rem;border-radius:6px;font-size:1.1rem;cursor:pointer;color:var(--muted);display:inline-flex;align-items:center;gap:.4rem}
+.theme-toggle:hover{color:var(--accent);background:rgba(0,0,0,0.02)}
+
+/* animate the icon briefly when toggled */
+.theme-toggle .icon{display:inline-block;transition:transform .35s ease}
+.theme-toggle.spin .icon{transform:rotate(360deg) scale(1.06)}
+
+/* place nav to the right so the theme button appears at far right */
+.header-inner .nav{margin-left:auto}
+
+/* Dark theme defaults via prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+	:root{
+		--bg:#0b1220;
+		--card:#0f1724;
+		--accent:#60a5fa;
+		--muted:#9ca3af;
+		--text:#e6eef8;
+	}
+}
+
+/* Body class to explicitly opt into dark mode */
+body.dark{
+	--bg:#0b1220;
+	--card:#0f1724;
+	--accent:#60a5fa;
+	--muted:#9ca3af;
+	--text:#e6eef8;
+}
+
+/* Ensure common components use theme variables (override remaining hard-coded colors) */
+body.dark {
+	background: var(--bg);
+	color: var(--text);
+}
+
+body.dark .hero {
+	/* use card background for hero in dark mode */
+	background: linear-gradient(180deg, var(--card) 0%, rgba(255,255,255,0.02) 100%);
+}
+
+body.dark .nav.open{
+	background: var(--card);
+	border-color: rgba(255,255,255,0.06);
+}
+
+body.dark .card {
+	background: var(--card);
+	box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+}
+
+body.dark input[type=text],
+body.dark input[type=email],
+body.dark textarea {
+	background: transparent;
+	border-color: rgba(255,255,255,0.08);
+	color: var(--text);
+}
+
+body.dark .site-footer, body.dark .site-header {
+	background: var(--card);
+	border-color: rgba(255,255,255,0.04);
+}
+
+/* links and muted text */
+body.dark a { color: var(--accent); }
+body.dark .text-muted { color: var(--muted); }
+
+/* make some large hard-coded white backgrounds adapt better */
+body.dark #main > .inner,
+body.dark #header,
+body.dark #footer,
+body.dark .container {
+	background: transparent;
+}
+
 
 @media (max-width:700px){
   .nav{display:none}
@@ -45,6 +125,27 @@ input[type=text],input[type=email],textarea{width:100%;padding:.6rem;border:1px 
 
 /* small utility */
 .text-muted{color:var(--muted)}
+/* Ensure common textual elements follow the theme color variables for good contrast */
+h1,h2,h3,h4,h5,h6,p,li,label,span,blockquote,figcaption,dt,dd {
+	color: var(--text);
+}
+
+/* Links use accent color but remain readable */
+a, .nav a {
+	color: var(--accent);
+}
+
+.nav a:hover, a:hover { color: var(--accent); opacity: .9 }
+
+/* Muted text follows variable */
+.text-muted, small { color: var(--muted); }
+
+/* Form controls */
+input,textarea,select,button{color:var(--text)}
+
+/* Cards inherit page text color unless they specify otherwise */
+.card, .card * { color: inherit }
+
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
 

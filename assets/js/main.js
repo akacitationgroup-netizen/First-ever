@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Contact form handling (if present)
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
   if (form) {
@@ -38,4 +39,71 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 700);
     });
   }
+
+  // ------ Theme toggle (dark / light) ------
+  const themeToggle = document.getElementById('themeToggle');
+
+  function applyTheme(theme) {
+    // theme: 'dark' | 'light' | 'system'
+    if (theme === 'system') {
+      // follow system preference
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      theme = prefersDark ? 'dark' : 'light';
+    }
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
+      if (themeToggle) {
+        themeToggle.innerHTML = '<span class="icon">☀️</span>';
+        themeToggle.setAttribute('aria-pressed', 'true');
+        themeToggle.setAttribute('data-theme', 'dark');
+      }
+    } else {
+      document.body.classList.remove('dark');
+      if (themeToggle) {
+        themeToggle.innerHTML = '<span class="icon">🌙</span>';
+        themeToggle.setAttribute('aria-pressed', 'false');
+        themeToggle.setAttribute('data-theme', 'light');
+      }
+    }
+  }
+
+  // initialize theme from localStorage or system preference
+  (function initTheme() {
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        // saved can be 'dark'|'light'|'system'
+        applyTheme(saved);
+        if (themeToggle) themeToggle.setAttribute('data-preference', saved);
+        return;
+      }
+    } catch (e) {
+      // ignore localStorage errors
+    }
+    // default to system
+    applyTheme('system');
+    if (themeToggle) themeToggle.setAttribute('data-preference', 'system');
+  })();
+
+  // Cycle through preferences: system -> dark -> light -> system
+  const cycle = ['system', 'dark', 'light'];
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      const current = themeToggle.getAttribute('data-preference') || 'system';
+      const next = cycle[(cycle.indexOf(current) + 1) % cycle.length];
+
+      // animate icon briefly
+      themeToggle.classList.add('spin');
+      setTimeout(() => themeToggle.classList.remove('spin'), 420);
+
+      // apply and persist
+      applyTheme(next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      themeToggle.setAttribute('data-preference', next);
+      // update title to be clear
+      themeToggle.setAttribute('title', `Theme: ${next} (click to change)`);
+    });
+  }
+
 });
