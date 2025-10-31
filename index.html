@@ -19,64 +19,59 @@
 			</div>
 		</header>
 
-		<main>
-			<section class="hero">
-				<div class="container">
-					<h1>Simple, clean, and copy-paste friendly</h1>
-					<p>Create small static sites quickly. Open <code>index.html</code> in your editor and start editing.</p>
-					<p><a class="btn" href="#contact">Get in touch</a></p>
-				</div>
-			</section>
+			<main>
+				<section class="hero">
+					<div class="container">
+						<h1>Azure DevOps Project Starter</h1>
+						<p class="text-muted">This repository is prepared as a small static site plus example pipeline files to help you get started with Azure DevOps.</p>
+						<p>
+							<a class="btn" href="docs/azure-devops.md">Azure DevOps guide</a>
+							<a class="btn" href="azure-pipelines.yml" style="background:#0078D4;">View pipeline YAML</a>
+						</p>
+					</div>
+				</section>
 
-			<section id="features" class="container features">
-				<article class="card">
-					<h3>Fast</h3>
-					<p>Lightweight HTML and CSS with a tiny JS file for interactions.</p>
-				</article>
-				<article class="card">
-					<h3>Responsive</h3>
-					<p>Works on mobile, tablet, and desktop — just open the file in a browser.</p>
-				</article>
-				<article class="card">
-					<h3>Easy to edit</h3>
-					<p>Files are separated into HTML, CSS and JS for clarity.</p>
-				</article>
-			</section>
+				<section id="features" class="container features">
+					<article class="card">
+						<h3>Repos</h3>
+						<p>Store code and YAML pipeline definitions here. Use the provided <code>azure-pipelines.yml</code> as a starting point.</p>
+					</article>
+					<article class="card">
+						<h3>Pipelines</h3>
+						<p>Continuous integration using Azure Pipelines. See <a href="docs/azure-devops.md">docs/azure-devops.md</a> for instructions to create a pipeline and add build badges.</p>
+					</article>
+					<article class="card">
+						<h3>Boards & Artifacts</h3>
+						<p>Track work items and publish build artifacts from your pipelines to support deployments.</p>
+					</article>
+				</section>
 
-			<section id="about" class="container about">
-				<div class="split">
-					<div>
-						<h2>About this demo</h2>
-						<p>This is a small, self-contained starter you can copy into VS Code. Styles live in <code>assets/css/main.css</code> and scripts in <code>assets/js/main.js</code>.</p>
+				<section id="about" class="container about">
+					<div class="split">
+						<div>
+							<h2>What this repo contains</h2>
+							<ul>
+								<li><strong>index.html</strong> — Azure DevOps themed landing page.</li>
+								<li><strong>assets/</strong> — styles and JS for the site.</li>
+								<li><strong>azure-pipelines.yml</strong> — example pipeline to build and publish artifacts.</li>
+								<li><strong>docs/azure-devops.md</strong> — steps to connect this repo to Azure DevOps and add a build badge.</li>
+							</ul>
+						</div>
+						<div>
+							<img src="images/pic02.jpg" alt="Azure DevOps" class="responsive-img">
+						</div>
 					</div>
-					<div>
-						<img src="images/pic02.jpg" alt="Sample" class="responsive-img">
-					</div>
-				</div>
-			</section>
+				</section>
 
-			<section id="contact" class="container contact">
-				<h2>Contact us</h2>
-				<form id="contactForm" novalidate>
-					<div class="form-row">
-						<label for="name">Name</label>
-						<input id="name" name="name" type="text" required>
-					</div>
-					<div class="form-row">
-						<label for="email">Email</label>
-						<input id="email" name="email" type="email" required>
-					</div>
-					<div class="form-row">
-						<label for="message">Message</label>
-						<textarea id="message" name="message" rows="4" required></textarea>
-					</div>
-					<div class="form-row">
-						<button class="btn" type="submit">Send message</button>
-						<span id="formStatus" class="form-status" aria-live="polite"></span>
-					</div>
-				</form>
-			</section>
-		</main>
+				<section id="contact" class="container contact">
+					<h2>Next steps</h2>
+					<ol>
+						<li>Create a project in Azure DevOps and push this repository to the project's repo.</li>
+						<li>Create a new pipeline and point it to <code>azure-pipelines.yml</code>.</li>
+						<li>Add a build badge to your README using the badge snippet in <code>docs/azure-devops.md</code>.</li>
+					</ol>
+				</section>
+			</main>
 
 		<footer class="site-footer">
 			<div class="container">
